@@ -1,0 +1,12 @@
+# Notes, todo, etc
+NOTES.md
+TODO.md
+
+# Old copies
+*.old
+
+# Swapfiles
+*.swp
+
+# Green is my pepper
+*.xcf
