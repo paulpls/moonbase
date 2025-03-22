@@ -58,62 +58,6 @@ end
 
 
 
---  Adds a texture to the cache and breaks it up into columns
---
---  TODO Separate textures into designated faces:
---  Textures are assumed to be made up of 64x64 pixel squares,
---  and depending on the proportions, the squares in in the
---  image will be used for each face as described below:
---
---     .------------------------------------------------.
---     | W:H | Square | Usage                           |
---     |------------------------------------------------|
---     | 1:1 |  1st   | All faces                       |
---     |-----|--------|---------------------------------|
---     | 1:2 |  1st   | All side faces                  |
---     |     |  2nd   | Bottom and top faces            |
---     |-----|--------|---------------------------------|
---     | 1:3 |  1st   | All side faces                  |
---     |     |  2nd   | Bottom face                     |
---     |     |  3rd   | Top face                        |
---     |-----|--------|---------------------------------|
---     | 1:4 |  1st   | Front and back faces            |
---     |     |  2nd   | Left and right faces            |
---     |     |  3rd   | Bottom face                     |
---     |     |  4th   | Top face                        |
---     |-----|--------|---------------------------------|
---     | 1:6 |  1st   | Front face                      |
---     |     |  2nd   | Left face                       |
---     |     |  3rd   | Back face                       |
---     |     |  4th   | Right face                      |
---     |     |  5th   | Bottom face                     |
---     |     |  6th   | Top face                        |
---     '------------------------------------------------'
---
---  NOTE For outside textures, the top and bottom faces are invisible at this time.
-function M.registerTexture(self, name)
-    local dir = "res/texture/"
-    local name = name or "default"
-    local ext = ".png"
-    local path = table.concat{ dir, name, ext }
-
-    --  Slice the texture into 1px wide columns
-    local image = gfx.newImage(path)
-    local w,h = image:getDimensions()
-    local quads = {}
-
-    for x = 0, w - 1 do
-        quads[x] = gfx.newQuad(x, 0, 1, h, image)
-    end
-
-    self.textures[name] = {
-        image = image,
-        quads = quads
-    }
-end
-
-
-
 --  Add a new entity
 function M.add(self, entity)
     if not entity then return end
@@ -442,7 +386,6 @@ function M.new(data)
     local data = data or {}
     new.grid = data.grid or {}
     new.entities = data.entities or {}
-    new.textures = data.textures or {}
 
     --  Cameras
     new.cameraDimensions = data.cameraDimensions or Vec2.new(800, 600)

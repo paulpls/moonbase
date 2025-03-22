@@ -34,11 +34,6 @@ function love.load()
     --  Initialize the world
     world = World.new()
 
-    world:registerTexture("default")
-    world:registerTexture("window")
-    world:registerTexture("window_inside")
-    world:registerTexture("hazard")
-
     world:add(Entity.new("block", "default", {
         Body = {
             position = Vec2.new(0, 0),
