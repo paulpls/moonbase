@@ -59,6 +59,38 @@ end
 
 
 --  Adds a texture to the cache and breaks it up into columns
+--
+--  TODO Separate textures into designated faces:
+--  Textures are assumed to be made up of 64x64 pixel squares,
+--  and depending on the proportions, the squares in in the
+--  image will be used for each face as described below:
+--
+--     .------------------------------------------------.
+--     | W:H | Square | Usage                           |
+--     |------------------------------------------------|
+--     | 1:1 |  1st   | All faces                       |
+--     |-----|--------|---------------------------------|
+--     | 1:2 |  1st   | All side faces                  |
+--     |     |  2nd   | Bottom and top faces            |
+--     |-----|--------|---------------------------------|
+--     | 1:3 |  1st   | All side faces                  |
+--     |     |  2nd   | Bottom face                     |
+--     |     |  3rd   | Top face                        |
+--     |-----|--------|---------------------------------|
+--     | 1:4 |  1st   | Front and back faces            |
+--     |     |  2nd   | Left and right faces            |
+--     |     |  3rd   | Bottom face                     |
+--     |     |  4th   | Top face                        |
+--     |-----|--------|---------------------------------|
+--     | 1:6 |  1st   | Front face                      |
+--     |     |  2nd   | Left face                       |
+--     |     |  3rd   | Back face                       |
+--     |     |  4th   | Right face                      |
+--     |     |  5th   | Bottom face                     |
+--     |     |  6th   | Top face                        |
+--     '------------------------------------------------'
+--
+--  NOTE For outside textures, the top and bottom faces are invisible at this time.
 function M.registerTexture(self, name)
     local dir = "res/texture/"
     local name = name or "default"
