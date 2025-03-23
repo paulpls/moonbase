@@ -6,7 +6,7 @@
 
 
 
-local cache = {}
+local textures = {}
 
 
 
@@ -16,14 +16,14 @@ M.__name = "Texture"
 
 
 
---  Registers a texture to the cache.
+--  Registers a texture to the textures cache.
 function M.register(self)
     local dir = "res/texture/"
     local name = self.name
     local ext = ".png"
     local path = table.concat{ dir, name, ext }
     local image = gfx.newImage(path)
-    cache[path] = image
+    textures[path] = image
 end
 
 
@@ -89,7 +89,7 @@ function M.new(data)
 
     local data = data or {}
     new.name = data.name or "default"
-    
+
     new:load()
 
     return new
