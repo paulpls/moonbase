@@ -160,7 +160,7 @@ function love.load()
         },
     }))
 
-    world:add(Entity.new("block", "hazard", {
+    world:add(Entity.new("block", "test", {
         Body = {
             position = Vec2.new(8, 5),
         },
