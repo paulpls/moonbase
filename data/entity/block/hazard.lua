@@ -23,7 +23,7 @@ M.components = {
         normal = "yellow",
     },
     Texture = {
-        default = Texture.new("hazard"),
+        default = Texture.new{ name = "hazard" },
     },
     Render = {},
     Physics = {

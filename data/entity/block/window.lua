@@ -23,8 +23,8 @@ M.components = {
         normal = "gray1",
     },
     Texture = {
-        default = Texture.new("window"),
-        inside = Texture.new("window_inside"),
+        default = Texture.new{ name = "window" },
+        inside = Texture.new{ name = "window_inside" },
     },
     Transparency = {},
     Render = {},
