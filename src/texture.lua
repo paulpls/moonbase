@@ -87,7 +87,7 @@ end
 function M.process(self)
     local image = self.image
     local w = image:getWidth()
-    local size = 64
+    local size = self.size
     local numFaces = floor(w / size)
     self.layout = getLayout(numFaces)
     self.faces = {}
@@ -139,6 +139,7 @@ function M.new(data)
 
     local data = data or {}
     new.name = data.name or "default"
+    new.size = data.size or 64
 
     new:load()
 
