@@ -322,6 +322,23 @@ end
 
 
 
+--  Returns the appropriate side face to use for texture rendering.
+--  TODO Add functionality to handle block rotation; for now all
+--  blocks are assumed to have their front sides facing north.
+local function getFace(hit)
+    local face = "front"
+
+    if hit.side == 0 then
+        face = cos(hit.angle) < 0 and "left" or "right"
+    else
+        face = sin(hit.angle) < 0 and "back" or "front"
+    end
+
+    return face
+end
+
+
+
 --  Draws the projection of the raycast on the screen, with textures
 local function drawProjectionTextured(x, hit, camera)
     --  Skip projection if no line found during raycast, or if the
@@ -347,8 +364,8 @@ local function drawProjectionTextured(x, hit, camera)
     --  Ray intercept point as a proportion of texture width
     local intercept = floor(hit.intercept * tw)
 
-    --  TODO Detect which face was hit, for now defaults to "front"
-    local face
+    --  Detect which side face was hit
+    local face = getFace(hit)
 
     --  Projected line properties
     local W,H = camera.canvas:getDimensions()
