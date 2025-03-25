@@ -16,7 +16,7 @@ local textures = {}
 
 
 local M = {}
-M.index = M
+M.__index = M
 M.__name = "Texture"
 
 
@@ -33,6 +33,7 @@ function M.register(self, override)
 
     local image = gfx.newImage(path)
     textures[path] = image
+    self.image = image
 end
 
 
