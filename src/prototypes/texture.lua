@@ -60,8 +60,9 @@ end
 --  Processes the texture image and break it up into 1px columns.
 --
 --  Textures are assumed to be made up of 64x64 pixel squares,
---  and depending on the proportions, the squares in in the
---  image will be used for each face as described below:
+--  unless defined otherwise. Depending on the proportions, the
+--  squares in the image will be used for each face as described
+--  below:
 --
 --     .------------------------------------------------.
 --     | W:H | Square | Usage                           |
