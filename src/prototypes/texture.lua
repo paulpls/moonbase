@@ -27,9 +27,13 @@ function M.register(self, override)
     local name = self.name
     local ext = ".png"
     local path = table.concat{ dir, name, ext }
-
     local override = override and true or false
-    if textures[path] and not override then return end
+
+    if textures[path] and not override then
+        self.image = textures[path]
+
+        return
+    end
 
     local image = gfx.newImage(path)
     textures[path] = image
@@ -101,7 +105,7 @@ function M.process(self)
         for col = 0, size - 1 do
             local x = (face - 1) * size + col
             local y = 0
-            local quad = gfx.newQuad(x, y, size, size)
+            local quad = gfx.newQuad(x, y, size, size, self.image)
             newFace[col] = quad
         end
 
