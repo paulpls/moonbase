@@ -104,7 +104,7 @@ function M.process(self)
             newFace[col] = quad
         end
 
-        self.faces]face] = newFace
+        self.faces[face] = newFace
     end
 end
 
