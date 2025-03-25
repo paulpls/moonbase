@@ -360,7 +360,7 @@ local function drawProjectionTextured(x, hit, camera)
     local alpha = hit.line.alpha
 
     --  Reverse textures where necessary
-    local tx = hit.isReversed and tw - intercept - 1 or intercept
+    local intercept = hit.isReversed and tw - intercept - 1 or intercept
 
     --  Get highlight and color data, and add shading to one side of the entity
     local highlight = hit.entity:get("Highlight")
