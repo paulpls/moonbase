@@ -330,27 +330,25 @@ local function drawProjectionTextured(x, hit, camera)
 
     --  Get texture information
     local texture = hit.entity:get("Texture")
-
-    local textureName
+    local _texture
 
     if hit.inside then 
-         textureName = texture.inside
+         _texture = texture.inside
     end
 
-    textureName = textureName or texture.default
+    _texture = _texture or texture.default
 
     --  Stop rendering if no texture is registered
-    if not textureName then return end
-
-    --  Fetch data from registered textures, stop if none found
-    texture = hit.entity.world.textures[textureName]
-    if not texture then return end
+    if not _texture then return end
 
     --  Texture dimensions
-    local tw,th = texture.image:getDimensions()
+    local tw,th = _texture.size, _texture.size
 
     --  Ray intercept point as a proportion of texture width
     local intercept = floor(hit.intercept * tw)
+
+    --  TODO Detect which face was hit, for now defaults to "front"
+    local face
 
     --  Projected line properties
     local W,H = camera.canvas:getDimensions()
@@ -372,7 +370,9 @@ local function drawProjectionTextured(x, hit, camera)
     gfx.setColor(color)
 
     --  Draw the appropriate slice of the texture
-    gfx.draw(texture.image, texture.quads[tx], x, y, 0, w, h)
+    local image = _texture.image
+    local quad = _texture:getColumn(face, intercept)
+    gfx.draw(image, quad, x, y, 0, w, h)
 
     Palette.set("none")
 end
