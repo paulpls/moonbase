@@ -7,6 +7,7 @@
 
 
 local Vec2 = require "src.prototypes.vec2"
+local Texture = require "src.prototypes.texture"
 
 
 
@@ -22,7 +23,7 @@ M.components = {
         normal = "yellow",
     },
     Texture = {
-        default = "hazard",
+        default = Texture.new("hazard"),
     },
     Render = {},
     Physics = {
