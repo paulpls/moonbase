@@ -53,7 +53,7 @@ Initial screen:
 ![Screenshot 01](meta/screenshot/01.png)
   
   
-Transparent textures and inside faces:  
+Transparent textures and differing side faces:  
   
 ![Screenshot 02](meta/screenshot/02.png)
   
