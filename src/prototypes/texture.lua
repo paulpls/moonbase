@@ -106,7 +106,7 @@ function M.process(self)
         for col = 0, size - 1 do
             local x = (face - 1) * size + col
             local y = 0
-            local quad = gfx.newQuad(x, y, size, size, self.image)
+            local quad = gfx.newQuad(x, y, 1, size, self.image)
             newFace[col] = quad
         end
 
