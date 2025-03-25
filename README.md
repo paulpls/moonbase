@@ -9,7 +9,7 @@ License: [GPL 3.0](LICENSE.md)
 
 ## Introduction
 
-Moonbase is a [raycasting](http://en.wikipedia.org/wiki/Raycasting) engine build using [LÖVE](https://www.love2d.org). Raycasting is a method of rendering two-dimensional objects by projecting them onto a camera plane, providing a three-dimensional effect. Moonbase makes use of the Entity-Component-System design pattern to allow for emergent behavior and extensibility via composition.
+Moonbase is a [raycasting](http://en.wikipedia.org/wiki/Raycasting) engine built using [LÖVE](https://www.love2d.org). Raycasting is a method of rendering two-dimensional objects by projecting them onto a camera plane, providing a three-dimensional effect. Moonbase makes use of the Entity-Component-System design pattern to allow for emergent behavior and extensibility via composition.
 
 
 
