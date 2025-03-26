@@ -258,7 +258,7 @@ function M.new(data)
 
     if not data.world then
         data.world = phys.newWorld(0, data.meter * data.gravity, true)
-        --data.world:setCallbacks(beginContact, endContact, preSolve, postSolve)
+        data.world:setCallbacks(beginContact, endContact, preSolve, postSolve)
     end
 
     data.classes = data.classes or { [1] = "Default" }
