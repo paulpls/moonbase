@@ -206,6 +206,13 @@ end
 
 
 
+--  Send a text notification
+function M.notify(self, message)
+    print(message)
+end
+
+
+
 --  Update a specific entity
 local function updateEntity(self, dt, id)
     local entity = self.entities[id]
