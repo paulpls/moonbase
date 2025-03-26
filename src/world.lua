@@ -10,6 +10,8 @@ local Palette = require "src.palette"
 local Skybox = require "src.skybox"
 local Map = require "src.map"
 local Vec2 = require "src.prototypes.vec2"
+local Notification = require "src.prototypes.notification"
+local Queue = require "src.prototypes.queue"
 local Entity = require "src.prototypes.entity"
 local CameraSystem = require "src.systems.camera"
 local RotationSystem = require "src.systems.rotation"
@@ -208,7 +210,12 @@ end
 
 --  Send a text notification
 function M.notify(self, message)
-    print(message)
+    local notification = Notification.new{
+        title = "Testing",
+        text = "Test One Two",
+    }
+
+    self.notifications:add(notification)
 end
 
 
@@ -247,6 +254,12 @@ end
 
 
 function M.update(self, dt)
+    local notification = self.notifications:remove()
+
+    if notification then
+        print(notification.text)
+    end
+
     local currentCamera = self:getCamera()
     if not currentCamera then return end
 
@@ -415,6 +428,9 @@ function M.new(data)
     --  Skybox
     local skyboxDimensions = new.cameraDimensions * Vec2.new(1, 0.5)
     new.skybox = Skybox.new({ canvas = gfx.newCanvas(skyboxDimensions:unpack()) })
+
+    --  Notifications
+    new.notifications = data.notifications or Queue.new()
 
     --  Systems to register on load
     new._systems = data._systems or {
