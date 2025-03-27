@@ -17,7 +17,7 @@ M.__name = "Notification"
 
 
 function M.draw(self)
-    local W,H = gfx.getDimesions()
+    local W,H = gfx.getDimensions()
     local font = gfx.getFont()
     local lines = 2
 
