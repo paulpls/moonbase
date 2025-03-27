@@ -7,6 +7,7 @@
 
 
 local gfx = love.graphics
+local kbd = love.keyboard
 
 
 
@@ -16,7 +17,19 @@ M.__name = "Notification"
 
 
 
+function M.update(self, dt)
+    if self.kill then return end
+
+    if kbd.isDown("return") then
+        self.kill = true
+    end
+end
+
+
+
 function M.draw(self)
+    if self.kill then return end
+
     local W,H = gfx.getDimensions()
     local font = gfx.getFont()
     local lines = 2
@@ -55,6 +68,7 @@ function M.new(data)
     new.title = data.title or new.__name
     new.text = data.text or ""
     new.padding = data.padding or 8
+    new.kill = false
     --  Colors
     data.colors = data.colors or {}
     new.colors = {
