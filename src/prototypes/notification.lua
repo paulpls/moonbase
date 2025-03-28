@@ -6,8 +6,11 @@
 
 
 
+local Palette = require "src.palette"
 local gfx = love.graphics
 local kbd = love.keyboard
+local max = math.max
+local floor = math.floor
 
 
 
@@ -51,12 +54,13 @@ function M.draw(self)
     Palette.set(self.colors.foreground)
     gfx.rectangle("line", x, y, w, h)
 
-    --  Title
-    gfx.print(self.title, x + padding, y + padding)
+    --  Title (in bold)
+    gfx.print(self.title, x + self.padding, y + self.padding)
+    gfx.print(self.title, x + self.padding + 1, y + self.padding)
 
     --  Text
     y = y + lineHeight
-    gfx.print(self.title, x + padding, y + padding)
+    gfx.print(self.text, x + self.padding, y + self.padding)
 end
 
 
