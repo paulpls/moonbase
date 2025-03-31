@@ -6,7 +6,7 @@
 
 
 
-local function F(self, entity, contact, normal, tangent)
+local function F(self, entity, contact)
     if not world then return end
 
     local title = "Collision Detected"
@@ -15,8 +15,6 @@ local function F(self, entity, contact, normal, tangent)
         "Entity ", entity.id, " (", entity.__name, ")",
         " collided with ",
         "Entity ", self.id, " (", self.__name, ")",
-        "\nNormal: ", tostring(normal), "",
-        "\nTangent: ", tostring(tangent), "",
     }
 
     world:notify(title, text)

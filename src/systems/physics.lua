@@ -116,20 +116,20 @@ end
 
 
 
-local function beginContact(a, b, contact, normal, tangent)
-    handleCollisions("beginContact", a, b, contact, normal, tangent)
+local function beginContact(a, b, contact)
+    handleCollisions("beginContact", a, b, contact)
 end
 
 
 
-local function endContact(a, b, contact, normal, tangent)
-    handleCollisions("endContact", a, b, contact, normal, tangent)
+local function endContact(a, b, contact)
+    handleCollisions("endContact", a, b, contact)
 end
 
 
 
-local function preSolve(a, b, contact, normal, tangent)
-    handleCollisions("preSolve", a, b, contact, normal, tangent)
+local function preSolve(a, b, contact)
+    handleCollisions("preSolve", a, b, contact)
 end
 
 
