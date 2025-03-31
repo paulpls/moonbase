@@ -43,13 +43,18 @@ function M.draw(self)
 
     local W,H = gfx.getDimensions()
     local font = gfx.getFont()
-    local lines = 2
+
+    --  Calculate total number of lines in the notification:
+    --  First. count the total newlines chars in text, then
+    --  add one each for the first line of text and the title.
+    local _, lines = self.text:gsub("\n", "\n")
+    lines = lines + 2
 
     local lineHeight = font:getHeight()
     local titleWidth = font:getWidth(self.title)
     local textWidth = font:getWidth(self.text)
     local w = max(titleWidth, textWidth) + self.padding.x * 2
-    local h = lineHeight * (lines + 1) + self.padding.y * 3
+    local h = lineHeight * lines + self.padding.y * 3
 
     local x = floor((W - w) / 2)
     local y = floor((H - h) / 2)
