@@ -246,6 +246,9 @@ function love.keypressed(key)
     --  Quit
     if key == "escape" then love.event.quit() end
 
+    --  Stop here if notification is present
+    if world and world.notifications:peek() then return end
+
     --  Toggle texture rendering
     if key == "tab" then
         local camera = world:getCamera():get("Camera")
