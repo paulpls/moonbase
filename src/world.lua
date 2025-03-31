@@ -209,10 +209,10 @@ end
 
 
 --  Send a text notification
-function M.notify(self, message)
+function M.notify(self, title, text)
     local notification = Notification.new{
-        title = "Testing",
-        text = "Test One Two",
+        title = title,
+        text = text,
     }
 
     self.notifications:add(notification)
