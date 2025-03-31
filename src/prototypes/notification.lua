@@ -61,6 +61,8 @@ function M.draw(self)
     --  Text
     y = y + lineHeight
     gfx.print(self.text, x + self.padding, y + self.padding)
+
+    Palette.set("none")
 end
 
 
