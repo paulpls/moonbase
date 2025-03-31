@@ -7,6 +7,7 @@
 
 
 local Palette = require "src.palette"
+local Timer = require "src.prototypes.timer"
 local gfx = love.graphics
 local kbd = love.keyboard
 local max = math.max
@@ -22,6 +23,12 @@ M.__name = "Notification"
 
 function M.update(self, dt)
     if self.kill then return end
+
+    self.timer:update(dt)
+
+    if not self.timer:isExpired() then
+        return
+    end
 
     if kbd.isDown("return") then
         self.kill = true
@@ -75,6 +82,8 @@ function M.new(data)
     new.text = data.text or ""
     new.padding = data.padding or 8
     new.kill = false
+    --  Timer
+    new.timer = data.timer or Timer.new{ duration = 0.25 }
     --  Colors
     data.colors = data.colors or {}
     new.colors = {

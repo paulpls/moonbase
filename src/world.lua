@@ -254,10 +254,18 @@ end
 
 
 function M.update(self, dt)
-    local notification = self.notifications:remove()
+    local notification = self.notifications:peek()
 
+    --  Update and dismiss notifications as needed
     if notification then
-        print(notification.text)
+        notification:update(dt)
+
+        --  Remove from queue if dismissed
+        if notification.kill then
+            self.notifications:remove()
+        end
+
+        return
     end
 
     local currentCamera = self:getCamera()
@@ -396,6 +404,13 @@ function M.draw(self)
 
     --  Draw info to the screen
     self:drawInfo()
+
+    --  Draw notifications to the screen
+    local notification = self.notifications:peek()
+
+    if notification then
+        notification:draw()
+    end
 end
 
 

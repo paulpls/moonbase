@@ -208,6 +208,11 @@ end
 function love.update(dt)
     updateFramerateInfo(dt)
 
+    --  Update world, halt further updates if notifications are present
+    --  TODO Move keyboard controls to separate module
+    if world then world:update(dt) end
+    if world and world.notifications:peek() then return end
+
     --  Update the camera
     local camera = world:getCamera()
     local movement = camera:get("Movement")
@@ -233,8 +238,6 @@ function love.update(dt)
     elseif kbd.isDown("right") then
         rotation.delta = 1
     end
-
-    if world then world:update(dt) end
 end
 
 
