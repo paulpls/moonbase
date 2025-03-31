@@ -146,7 +146,6 @@ M.colors = {
 
 
 
-
 local function get(name)
     local color = M.colors[name]
 
