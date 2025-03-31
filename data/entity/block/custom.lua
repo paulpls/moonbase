@@ -19,7 +19,7 @@ M.components = {
         position = Vec2.new(),
     },
     Color = {
-        normal = "red",
+        normal = "transparent",
     },
     Physics = {
         state = "static",
