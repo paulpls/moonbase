@@ -7,6 +7,7 @@
 
 
 local Palette = require "src.palette"
+local Vec2 = require "src.prototypes.vec2"
 local Timer = require "src.prototypes.timer"
 local gfx = love.graphics
 local kbd = love.keyboard
@@ -47,27 +48,31 @@ function M.draw(self)
     local lineHeight = font:getHeight()
     local titleWidth = font:getWidth(self.title)
     local textWidth = font:getWidth(self.text)
-    local w = max(titleWidth, textWidth) + self.padding * 2
-    local h = lineHeight * (lines + 1) + self.padding * 4
+    local w = max(titleWidth, textWidth) + self.padding.x * 2
+    local h = lineHeight * (lines + 1) + self.padding.y * 3
 
     local x = floor((W - w) / 2)
     local y = floor((H - h) / 2)
+    local _cursor = Vec2.new(x, y)
 
     --  Draw background
     Palette.set(self.colors.background)
-    gfx.rectangle("fill", x, y, w, h)
+    gfx.rectangle("fill", _cursor.x, _cursor.y, w, h)
 
     --  Draw border
     Palette.set(self.colors.foreground)
-    gfx.rectangle("line", x, y, w, h)
+    gfx.rectangle("line", _cursor.x, _cursor.y, w, h)
+
+    _cursor = _cursor + self.padding
 
     --  Title (in bold)
-    gfx.print(self.title, x + self.padding, y + self.padding)
-    gfx.print(self.title, x + self.padding + 1, y + self.padding)
+    gfx.print(self.title, _cursor.x, _cursor.y)
+    gfx.print(self.title, _cursor.x + 1, _cursor.y)
+
+    _cursor.y = _cursor.y + lineHeight + self.padding.y
 
     --  Text
-    y = y + lineHeight
-    gfx.print(self.text, x + self.padding, y + self.padding)
+    gfx.print(self.text, _cursor.x, _cursor.y)
 
     Palette.set("none")
 end
@@ -80,7 +85,7 @@ function M.new(data)
     local data = data or {}
     new.title = data.title or new.__name
     new.text = data.text or ""
-    new.padding = data.padding or 8
+    new.padding = data.padding or Vec2.new(48, 24)
     new.kill = false
     --  Timer
     new.timer = data.timer or Timer.new{ duration = 0.25 }
