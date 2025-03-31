@@ -164,12 +164,6 @@ function love.load()
         Body = {
             position = Vec2.new(8, 5),
         },
-    }))
-
-    world:add(Entity.new("block", "custom", {
-        Body = {
-            position = Vec2.new(7, 5),
-        },
         Collision = {
             handlers = {
                 Camera = {
