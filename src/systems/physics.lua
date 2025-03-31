@@ -92,7 +92,7 @@ end
 
 
 
-local function handleCollisions(name, a, b, contact, normalImpulse, tangentImpulse)
+local function handleCollisions(name, a, b, contact, normal, tangent)
     local a = a:getUserData()
     local b = b:getUserData()
     local aCol,bCol = a:get("Collision"), b:get("Collision")
@@ -110,32 +110,32 @@ local function handleCollisions(name, a, b, contact, normalImpulse, tangentImpul
     end
 
     for _, action in ipairs(callbacks) do
-        action(a, b, contact, normalImpulse, tangentImpulse)
+        action(a, b, contact, normal, tangent)
     end
 end
 
 
 
-local function beginContact(a, b, contact)
-    handleCollisions("beginContact", a, b, contact)
+local function beginContact(a, b, contact, normal, tangent)
+    handleCollisions("beginContact", a, b, contact, normal, tangent)
 end
 
 
 
-local function endContact(a, b, contact)
-    handleCollisions("endContact", a, b, contact)
+local function endContact(a, b, contact, normal, tangent)
+    handleCollisions("endContact", a, b, contact, normal, tangent)
 end
 
 
 
-local function preSolve(a, b, contact)
-    handleCollisions("preSolve", a, b, contact)
+local function preSolve(a, b, contact, normal, tangent)
+    handleCollisions("preSolve", a, b, contact, normal, tangent)
 end
 
 
 
-local function postSolve(a, b, contact, normalImpulse, tangentImpulse)
-    handleCollisions("postSolve", a, b, contact, normalImpulse, tangentImpulse)
+local function postSolve(a, b, contact, normal, tangent)
+    handleCollisions("postSolve", a, b, contact, normal, tangent)
 end
 
 
