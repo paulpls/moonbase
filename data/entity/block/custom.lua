@@ -28,6 +28,11 @@ M.components = {
     },
     Collision = {
         classList = { "Custom" },
+        handlers = {
+            Camera = {
+                beginContact = require("src.behaviors.notifyCollision"),
+            },
+        },
     },
 }
 
