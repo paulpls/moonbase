@@ -14,7 +14,7 @@ M.__name = "Component"
 
 --  Init
 function M.new(name, data)
-    local new = setmetatable({}, Base)
+    local new = setmetatable({}, M)
     new.__name = name and table.concat{ name, M.__name } or table.concat{ M.__name, "Prototype" }
     new.id = name
 
